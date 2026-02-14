@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class Ejercicios {
     public static void main(String[] args) {
         // EJERCICIO 1 EN EL ARCHIVO Main.java
@@ -134,65 +132,45 @@ vivienda.
          Obtener  dos  arreglos  tal  que  sus  elementos  sean  los  números  pares  y  números
 impares del arreglo A de 10 elementos.
          */
-        // AUN NO REALIZADO
+        int[] numerosJuntos = {3, 5, 6, 11, 4, 2, 1, 9, 17, 12};
 
-
-
-
-
-
-
-
-        System.out.println("\nEJERCICIO 8\n");
-        // PROGRAMA COMENTADO DEBIDO A QUE SE SOLICITAN DEMASIADOS DATOS
-        // DESCOMENTAR APENAS SE TERMINEN Y PRUEBEN LOS DEMAS EJERCICIOS
-        /*
-         Elaborar un programa que lea 30 números y que imprima el número mayor, menor y el
-número de veces que se repiten ambos.
-
-        Scanner scan = new Scanner(System.in);
-        int[] numerosLeidos = new int[30];
-        for (int i=0; i<30; i++) {
-            System.out.print("Ingrese el número " + (i+1) + ": ");
-            numerosLeidos[i] = scan.nextInt();
-        }
-
-
-        Crear las variables una vez el arreglo ya contenga los datos leídos por consola
-        evitando que todas las variables se inicien por defecto en 0
-
-        int mayorLeido = numerosLeidos[0];
-        int menorLeido = numerosLeidos[0];
-        int menorRepeticiones = 0;
-        int mayorRepeticiones = 0;
-
-        for (int i=0; i<30; i++) {
-            if (numerosLeidos[i] >= mayorLeido) {
-                mayorLeido = numerosLeidos[i];
+        // Contar los pares e impares y reservar en memoria los arreglos con esas cantidades
+        int cantidadPares = 0;
+        int cantidadImpares = 0;
+        for (int i=0; i<numerosJuntos.length; i++) {
+            if (numerosJuntos[i] % 2 == 0) {
+                cantidadPares++;
+            } else {
+                cantidadImpares++;
             }
-            if (numerosLeidos[i] <= menorLeido) {
-                menorLeido = numerosLeidos[i];
+        }
+        int[] pares = new int[cantidadPares];
+        int[] impares = new int[cantidadImpares];
+
+        int paresContados = 0;
+        int imparesContados = 0;
+
+        for (int i=0; i<numerosJuntos.length; i++) {
+            if (numerosJuntos[i] % 2 == 0) {
+                pares[paresContados] = numerosJuntos[i];
+                paresContados++;
+            } else {
+                impares[imparesContados] = numerosJuntos[i];
+                imparesContados++;
             }
         }
 
-        for (int i=0; i<30; i++) {
-            if (numerosLeidos[i] == mayorLeido) {
-                mayorRepeticiones++;
-            }
-            if (numerosLeidos[i] == menorLeido) {
-                menorRepeticiones++;
-            }
+        System.out.println("Pares");
+        for (int i=0; i<pares.length; i++) {
+            System.out.print(pares[i] + " | ");
         }
 
-        scan.close();
+        System.out.println("\nImpares");
+        for (int i=0; i<impares.length; i++) {
+            System.out.print(impares[i] + " | ");
+        }
 
-        System.out.println("El número mayor es: " + mayorLeido);
-        System.out.println("El número menor es: " + menorLeido);
-        System.out.println("El número mayor se repite " + mayorRepeticiones + " veces");
-        System.out.println("El número menor se repite " + menorRepeticiones + " veces");
-        */
-
-        System.out.println("\nEJERCICIO 9\n");
+        System.out.println("\n\nEJERCICIO 9\n");
         /*
          Codifique  un  programa  tal,  que  dado  como  entrada  un  arreglo  unidimensional  de
 enteros  y  un  número  entero,  determine  cuántas  veces  se  encuentra  este  número
@@ -212,6 +190,218 @@ dentro del arreglo.
         System.out.println("El número " + numeroBuscado + " se repite " + contador + " veces en el arreglo.");
 
         System.out.println("\nEJERCICIO 10\n");
-        // AUN NO REALIZADO
+        /*
+        Dado un arreglo A de N elementos se desea crear otro arreglo, tal que cada uno de sus
+elementos sea la suma de los opuestos en el arreglo dado.
+Ejemplo:       Arreglo dado A = (8,5,3,10,2,8,1)
+               Arreglo resultante B=(9,13,5,10)
+         */
+
+        int[] arreloA = {8,5,3,10,2,8,1};
+        int[] sumaOpuestos = new int[4];
+        int cuenta = arreloA.length;
+
+        for (int i=0; i<sumaOpuestos.length; i++) {
+            int posicion = cuenta - 1 - i;
+            if (i != posicion) { // No sumar si la posición es la misma a sumar
+                sumaOpuestos[i] = arreloA[i] + arreloA[posicion];
+            } else {
+                sumaOpuestos[i] = arreloA[i];
+            }
+        }
+
+        for  (int i=0; i<sumaOpuestos.length; i++) {
+            System.out.print(sumaOpuestos[i] + " | ");
+        }
+        System.out.println();
+
+        System.out.println("\nEJERCICIO 11\n");
+        /*
+         Dado un arreglo A de N elementos se desea generar tres arreglos que contengan los
+elementos negativos, cero y positivos de arreglo inicial.
+        */
+        int[] elementos = {5, 0, 2, 4, 0, 5, 3, 4, 1, 1, 0, 6, 5, 9, 11, 8};
+        int paresCantidad = 0;
+        int cerosCantidad = 0;
+        int imparesCantidad = 0;
+
+        // Consultar la cantidad de pares, impares y ceros para reservar la memoria de los arreglos
+        for (int i=0; i<elementos.length; i++) {
+            if (elementos[i] == 0){
+                cerosCantidad++;
+            } else if (elementos[i] % 2 == 0) {
+                paresCantidad++;
+            } else {
+                imparesCantidad++;
+            }
+        }
+
+        // Declarar arreglos con las cantidades sumadas
+        int[] paresArreglo = new int[paresCantidad];
+        int[] imparesArreglo = new int[imparesCantidad];
+        int[] cerosArreglo =  new int[cerosCantidad];
+
+        int ceroContados = 0;
+        int parContados = 0;
+        int imparContados = 0;
+
+        for (int i=0; i< elementos.length; i++) {
+            if (elementos[i] == 0){
+                cerosArreglo[ceroContados] = elementos[i];
+                ceroContados++;
+            } else if (elementos[i] % 2 == 0) {
+                paresArreglo[parContados] = elementos[i];
+                parContados++;
+            } else {
+                imparesArreglo[imparContados] = elementos[i];
+                imparContados++;
+            }
+        }
+
+        // Recorrer los arreglos
+        for (int i = 0; i< cerosArreglo.length; i++) {
+            System.out.print(cerosArreglo[i] + " | ");
+        }
+        System.out.println();
+        for (int i = 0; i< paresArreglo.length; i++) {
+            System.out.print(paresArreglo[i] + " | ");
+        }
+        System.out.println();
+        for (int i = 0; i< imparesArreglo.length; i++) {
+            System.out.print(imparesArreglo[i] + " | ");
+        }
+        System.out.println();
+        System.out.println("\nEJERCICIO 12\n");
+        /*
+         Dado un arreglo A de N elementos se quiere generar otro arreglo que contenga las
+posiciones de los elementos del arreglo dado que sean iguales a un valor x dado.
+Ejemplo:  Arreglo dado A=(4,6,8,2,6,9,6,1)
+          X=6
+          Arreglo resultante B=(2,5,7)
+         */
+
+        int[] arregloA = {4,6,8,2,6,9,6,1};
+        int x = 6;
+
+        int encontrados = 0;
+
+        for (int i=0; i<arregloA.length; i++) {
+            if (arregloA[i] == x) {
+                encontrados++;
+            }
+        }
+
+        int[] iguales = new int[encontrados];
+        int posicionSiguiente = 0;
+
+        for (int i=0; i<arregloA.length; i++) {
+            if (arregloA[i] == x) {
+                iguales[posicionSiguiente] = i + 1; // Aumentar en 1, ya que la posición se desea guardar comenzando desde el 1
+                posicionSiguiente++;
+            }
+        }
+
+        for (int i=0; i<iguales.length; i++) {
+            System.out.print(iguales[i] + " | ");
+        }
+        System.out.println();
+
+        System.out.println("\nEJERCICIO 13\n");
+        /*
+        Dado  un  arreglo  A  de  N  elementos  se  desea  almacenar  los  elementos  mayores  y
+menores que la media, almacenarlos en vectores diferentes.
+         */
+        int[] elementosA = {23, 43, 12, 8, 65, 4, 3, 65, 45, 87, 23, 9};
+
+        // Hallar la media
+        int totalElementos = 0;
+        for (int i=0; i<elementosA.length; i++) {
+            totalElementos += elementosA[i];
+        }
+
+        float media = (float) totalElementos / elementosA.length;
+        System.out.println("La media es: " + media);
+
+        // Encontrar cantidad de mayores y menores
+        int cantidadMayores = 0;
+        int cantidadMenores = 0;
+        for (int i=0; i<elementosA.length; i++) {
+            if (elementosA[i] > media) {
+                cantidadMayores++;
+            } else {
+                cantidadMenores++;
+            }
+        }
+
+        // Iniciar los arreglos con las cantidades obtenidas
+        int[] mayores = new int[cantidadMayores];
+        int[] menores = new int[cantidadMenores];
+
+        int siguienteMayor = 0;
+        int siguienteMenor = 0;
+
+        for (int i=0; i<elementosA.length; i++) {
+            if (elementosA[i] > media) {
+                mayores[siguienteMayor] = elementosA[i];
+                siguienteMayor++;
+            } else {
+                menores[siguienteMenor] = elementosA[i];
+                siguienteMenor++;
+            }
+        }
+
+        System.out.println("\nMayores:");
+        for (int i=0; i<mayores.length; i++) {
+            System.out.print(mayores[i] + " | ");
+        }
+
+        System.out.println("\nMenores:");
+        for (int i=0; i<menores.length; i++) {
+            System.out.print(menores[i] + " | ");
+        }
+        System.out.println();
+
+        System.out.println("\nEJERCICIO 14\n");
+        /*
+        Dado un arreglo de N elementos se desea obtener otro arreglo tal que sus elementos
+sean la diferencia de los elementos sucesivos del arreglo dado.
+Ejemplo:  Arreglo dado A=(4,6,8,2,6,9,5,1)
+    Arreglo resultante B=(-2,-2,6,-4,-3,4,4)
+         */
+        int[] arregloElementos = {4,6,8,2,6,9,5,1};
+        int[] restas = new int[arregloElementos.length - 1];
+
+        for (int i=0; i<restas.length; i++) {
+            restas[i] = arregloElementos[i] - arregloElementos[i+1];
+        }
+
+        for (int i=0; i<restas.length; i++) {
+            System.out.print(restas[i] + " | ");
+        }
+        System.out.println();
+
+        System.out.println("\nEJERCICIO 15\n");
+        /*
+         Se  tienen  los  nombres  y  los  sueldos  de  los  trabajadores  de  una  empresa.  Se  desea
+saber cuántos y quiénes tienen un sueldo promedio.
+         */
+        String[] empleadosArreglo = {"Felipe", "Karol", "Sandra", "Manuel", "Andres", "Emilio", "Ana"};
+        int[] salarios = {100, 500, 450, 300, 200, 250, 300};
+        int promedio = 0;
+        for (int i=0; i<salarios.length; i++) {
+            promedio += salarios[i];
+        }
+        promedio = promedio / salarios.length;
+        System.out.println("El promedio de salarios es: " + promedio);
+        int empleadosPromedio = 0;
+
+        for (int i=0; i<empleadosArreglo.length; i++) {
+            if (salarios[i] == promedio) {
+                System.out.println("El empleado/a " + empleadosArreglo[i] + " tiene un salario promedio.");
+                empleadosPromedio++;
+            }
+        }
+
+        System.out.println(empleadosPromedio + " empleados tienen un salario promedio.");
     }
 }
