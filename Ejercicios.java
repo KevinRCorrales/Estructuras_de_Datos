@@ -337,7 +337,7 @@ public class Ejercicios {
             totalElementos += elementosA[i];
         }
 
-        float media = (float) totalElementos / elementosA.length;
+        double media = (double) totalElementos / elementosA.length;
         System.out.println("La media es: " + media);
 
         // Encontrar cantidad de mayores y menores
