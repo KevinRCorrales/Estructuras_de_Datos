@@ -21,7 +21,8 @@ public class EjecutarMoto {
             suma += m[i].getModelo();
         }
 
-        System.out.println("El promedio de los modelos de las motos del arreglo es: " + (suma / m.length));
+        JOptionPane.showMessageDialog(null, "El promedio de los modelos de las motos del arreglo es: " + (suma / m.length));
+        //System.out.println("El promedio de los modelos de las motos del arreglo es: " + (suma / m.length));
 
         // Obtener las motos que puedo comprar con un presupuesto de 20000 dólares
         String cad = "";
