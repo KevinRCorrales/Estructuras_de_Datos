@@ -8,7 +8,7 @@ public class EjecutarInventario {
         Producto p5 = new Producto(692183290, "Portatil Asus", 3000000.0, 80);
 
         // Crear el inventario y pasarle los productos como array
-        Producto[] pArray = new Producto[7];
+        Producto[] pArray = new Producto[6];
         pArray[0] = p1;
         pArray[1] = p2;
         pArray[2] = p3;
@@ -29,5 +29,7 @@ public class EjecutarInventario {
         } catch (Exception NullPointerException) {
             System.out.println("No existe el producto con el id " + 12839829);
         }
+
+        inv.ordenarPorPrecioDescendente(pArray);
     }
 }
