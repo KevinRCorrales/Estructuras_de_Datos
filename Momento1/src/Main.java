@@ -22,19 +22,23 @@ public class Main {
             input = sc.nextInt();
             switch (input) {
                 case 1:
-                    s.menuRegistroBuques(new Buque());
+                    s.llenarBuques();
+                    break;
                 case 2:
-                    System.out.println("Ingresa el peso del contenedor:");
-                    double tempPeso = sc.nextDouble();
-                    s.menuRegistroContenedores(new Contenedor(tempPeso));
+                    s.llenarMatriz();
+                    break;
                 case 3:
                     System.out.println("El peso total de los contenedores es: " + s.pesoContenedores());
-                
+                    break;
+                case 4:
+                    s.origenesAgrupados();
+                    break;
+                case 5:
+                    sc.close();
+                    System.exit(0);
                 default:
                     System.out.println("Valor no válido.");;
             }
-        } while (input != 5);
-
-        sc.close();
+        } while (true);
     }
 }
