@@ -43,10 +43,10 @@ public class Sistema {
             }
         }
         System.out.println(
-            japoneses + " Buques de Japón\n" +
-            chinos + " Buques de China\n" +
-            chilenos + " Buques de Chile\n" + 
-            espanoles + " Buques de Espania"
+            japoneses + " contenedores de Japón\n" +
+            chinos + " contenedores de China\n" +
+            chilenos + " contenedores de Chile\n" + 
+            espanoles + " contenedores de Espania"
         );
     }
 

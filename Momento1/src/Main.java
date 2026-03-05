@@ -34,7 +34,26 @@ public class Main {
                             System.out.println(b[i]);
                         }
                     } else {
-                        s.setBuques(llenarBuques(area));
+                        try {
+                            // Acceder a un contenedor, si se produce NullPointerException
+                            // los contenedores están vacíos y por ende no se pueden
+                            // llenar los buques.
+                            s.getContenedores()[0][0].getOrigen();
+                        } catch (Exception NullPointerException) {
+                            System.out.println("\nERROR: Los contenedores están vacíos, llenelos primero.\n");
+                            break;
+                        }
+                        try {
+                            // Intentar acceder a un buque, si NO se produce NullPointerException
+                            // quiere decir que los buques ya están llenos y no se debería permitir
+                            // sobre-escribirlos
+                            s.getBuques()[0].getId();
+                        } catch (Exception NullPointerException) {
+                            // el Array esta vacio asi que se permite escribir en él
+                            s.setBuques(llenarBuques(s.getContenedores()));
+                            break;
+                        }
+                        System.out.println("\nError: Está intentado sobreescribir los buques, el arreglo está lleno.\n");
                     }
                     break;
                 case 2:
@@ -52,7 +71,13 @@ public class Main {
                         }
                         System.out.println();
                     } else {
-                        s.setContenedores(llenarContenedores(paises));
+                        try {
+                            s.getContenedores()[0][0].getId();
+                        } catch (Exception NullPointerException) {
+                            s.setContenedores(llenarContenedores(paises));
+                            break;
+                        }
+                        System.out.println("\nError: Está intentando sobreescribir los contenedores, la matriz está llena.\n");
                     }
                     break;
                 case 3:
@@ -79,7 +104,7 @@ public class Main {
             if (opcion == 1 || opcion == 2) {
                 return opcion;
             } else {
-                System.out.println("Opción incorrecta, intente de nuevo...");
+                System.out.println("\nOpción incorrecta, intente de nuevo...\n");
             }
         }
     }
@@ -87,10 +112,14 @@ public class Main {
     public static Contenedor[][] llenarContenedores(String[] paises) {
         Random r = new Random();
         Contenedor[][] contenedores = new Contenedor[10][10];
+        int min = 100000;
+        int max = 999999;
+        int pMin = 10;
+        int pMax = 35;
         for (int i = 0; i < contenedores.length; i++) { // filas
             for (int j = 0; j < contenedores[0].length; j++) { // columnas
-                int peso = r.nextInt((35-10+1)) + 10;
-                int id = r.nextInt((999999-100000+1)) + 100000;
+                int peso = r.nextInt((pMax-pMin+1)) + pMin;
+                int id = r.nextInt((max-min+1)) + min;
                 String origen = paises[r.nextInt(((paises.length-1)-0+1) + 0)];
                 contenedores[i][j] = new Contenedor(peso, id, origen);
             }
@@ -101,8 +130,10 @@ public class Main {
     public static Buque[] llenarBuques(Contenedor[][] contenedores) {
         Buque[] buques = new Buque[10];
         Random r = new Random();
+        int max = 999999;
+        int min = 100000;
         for (int i=0; i<buques.length; i++) {
-            int id = r.nextInt((999999-100000+1)) + 100000;
+            int id = r.nextInt((max-min+1)) + min;
             buques[i] = new Buque(id, contenedores[i]);
         }
         return buques;
