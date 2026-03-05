@@ -1,37 +1,12 @@
-import java.util.Arrays;
-import java.util.Random;
-
 public class Sistema {
     private Buque[] buques;
     private Contenedor[][] contenedores;
+    private String[] paises;
 
-    private String[] paises = {"Japón", "China", "Chile", "Espania"};
-
-    public Sistema(Buque[] buques, Contenedor[][] contenedores) {
+    public Sistema(Buque[] buques, Contenedor[][] contenedores, String[] paises) {
         this.buques = buques;
         this.contenedores = contenedores;
-    }
-
-    public Contenedor[][] llenarMatriz() {
-        Random r = new Random();
-        for (int i = 0; i < this.contenedores.length; i++) { // filas
-            for (int j = 0; j < this.contenedores[0].length; j++) { // columnas
-                int peso = r.nextInt((35-10+1)) + 10;
-                int id = r.nextInt((999999-100000+1)) + 100000;
-                String origen = paises[r.nextInt(((paises.length-1)-0+1) + 0)];
-                this.contenedores[i][j] = new Contenedor(peso, id, origen);
-            }
-        }
-        return this.contenedores;
-    }
-
-    public Buque[] llenarBuques() {
-        Random r = new Random();
-        for (int i=0; i<this.buques.length; i++) {
-            int id = r.nextInt((999999-100000+1)) + 100000;
-            this.buques[i] = new Buque(id, this.contenedores[i]);
-        }
-        return this.buques;
+        this.paises = paises;
     }
 
     public double pesoContenedores() {
@@ -83,16 +58,29 @@ public class Sistema {
         this.buques = buques;
     }
 
-    public Contenedor[][] getContenedors() {
+    public Contenedor[][] getContenedores() {
         return contenedores;
     }
 
-    public void setContenedors(Contenedor[][] contenedores) {
+    public void setContenedores(Contenedor[][] contenedores) {
         this.contenedores = contenedores;
+    }
+
+    public String[] getPaises() {
+        return paises;
+    }
+
+    public void setPaises(String[] paises) {
+        this.paises = paises;
     }
 
     @Override
     public String toString() {
-        return "Sistema [buques=" + Arrays.toString(buques) + ", contenedors=" + Arrays.toString(contenedores) + "]";
+        String retorno = "Sistema [buques=";
+        for (int i=0; i<buques.length; i++) {
+            retorno += buques[i].toString() + " | ";
+        }
+        retorno += "]";
+        return retorno;
     }
 }

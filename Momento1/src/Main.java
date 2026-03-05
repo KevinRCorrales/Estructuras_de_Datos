@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
@@ -6,9 +7,10 @@ public class Main {
 
         // Crear la matriz para los contenedores y el array para los buques
         // Además crear el sistema de administración
+        String[] paises = {"Japón", "China", "Chile", "Espania"};
         Contenedor[][] area = new Contenedor[10][10];
         Buque[] buques = new Buque[10];
-        Sistema s = new Sistema(buques, area);
+        Sistema s = new Sistema(buques, area, paises);
 
         // Menú con bucle do-while que solo sale si el usuario lo desea
         int input;
@@ -22,10 +24,36 @@ public class Main {
             input = sc.nextInt();
             switch (input) {
                 case 1:
-                    s.llenarBuques();
+                    int opcion = submenu(
+                        "1. Acceder al estado de buques.\n" +
+                        "2. Llenar los buques.", sc
+                    );
+                    if (opcion == 1) {
+                        Buque[] b = s.getBuques();
+                        for (int i=0; i<b.length; i++) {
+                            System.out.println(b[i]);
+                        }
+                    } else {
+                        s.setBuques(llenarBuques(area));
+                    }
                     break;
                 case 2:
-                    s.llenarMatriz();
+                    int opcion2 = submenu(
+                        "1. Acceder al estado de contenedores.\n" +
+                        "2. Llenar los contenedores.", sc
+                    );
+                    if (opcion2 == 1) {
+                        Contenedor[][] c = s.getContenedores();
+                        for (int i = 0; i < c.length; i++) { // filas
+                            for (int j = 0; j < c[0].length; j++) { // columnas
+                                System.out.print(c[i][j] + " | ");
+                            }
+                            System.out.println();
+                        }
+                        System.out.println();
+                    } else {
+                        s.setContenedores(llenarContenedores(paises));
+                    }
                     break;
                 case 3:
                     System.out.println("El peso total de los contenedores es: " + s.pesoContenedores());
@@ -40,5 +68,43 @@ public class Main {
                     System.out.println("Valor no válido.");;
             }
         } while (true);
+    }
+
+    public static int submenu(String textoImprimir, Scanner scanner) {
+        int opcion;
+        while (true) {
+            System.out.println("\n"+textoImprimir);
+            System.out.print("Ingrese la opción que desea ejecutar: ");
+            opcion = scanner.nextInt();
+            if (opcion == 1 || opcion == 2) {
+                return opcion;
+            } else {
+                System.out.println("Opción incorrecta, intente de nuevo...");
+            }
+        }
+    }
+
+    public static Contenedor[][] llenarContenedores(String[] paises) {
+        Random r = new Random();
+        Contenedor[][] contenedores = new Contenedor[10][10];
+        for (int i = 0; i < contenedores.length; i++) { // filas
+            for (int j = 0; j < contenedores[0].length; j++) { // columnas
+                int peso = r.nextInt((35-10+1)) + 10;
+                int id = r.nextInt((999999-100000+1)) + 100000;
+                String origen = paises[r.nextInt(((paises.length-1)-0+1) + 0)];
+                contenedores[i][j] = new Contenedor(peso, id, origen);
+            }
+        }
+        return contenedores;
+    }
+
+    public static Buque[] llenarBuques(Contenedor[][] contenedores) {
+        Buque[] buques = new Buque[10];
+        Random r = new Random();
+        for (int i=0; i<buques.length; i++) {
+            int id = r.nextInt((999999-100000+1)) + 100000;
+            buques[i] = new Buque(id, contenedores[i]);
+        }
+        return buques;
     }
 }

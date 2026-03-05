@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class Buque {
     private int id;
     private Contenedor[] contenedores;
@@ -27,6 +25,11 @@ public class Buque {
 
     @Override
     public String toString() {
-        return "Buque [id=" + id + ", contenedores=" + Arrays.toString(contenedores) + "]";
+        String retorno = "Buque [id=" + id + ", contenedores=[";
+        for (int i=0; i<contenedores.length; i++) {
+            retorno += contenedores[i].toString() + " | ";
+        }
+        retorno += "]";
+        return retorno;
     }
 }
