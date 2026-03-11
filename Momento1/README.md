@@ -2,7 +2,10 @@
 
 ## URL en GitHub
 
-[KevinRCorrales/Estructuras_de_Datos](https://github.com/KevinRCorrales/Estructuras_de_Datos/tree/main/Momento1)
+[KevinRCorrales/Estructuras_de_Datos#Momento1](https://github.com/KevinRCorrales/Estructuras_de_Datos/tree/main/Momento1)
+
+*URL del proyecto Galatic Express realizado en 11/03/2026*
+[KevinRCorrales/Estructuras_de_Datos#Galatic_Express](https://github.com/KevinRCorrales/Estructuras_de_Datos/tree/main/Galatic_Express)
 
 ## Output del programa
 
