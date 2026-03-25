@@ -10,7 +10,7 @@
 ## Output del programa
 
 ```
-[Kevin@archlinux Estructuras_de_Datos]$  cd /home/Kevin/GitHub/Estructuras_de_Datos ; /usr/bin/env /usr/lib/jvm/java-25-openjdk/bin/java --enable-preview -XX:+ShowCodeDetailsInExceptionMessages -cp /home/Kevin/.config/VSCodium/User/workspaceStorage/264bacede3785dfb0a9003208d6b73e2/redhat.java/jdt_ws/Estructuras_de_Datos_9680e0b0/bin Main 
+[Kevin@archlinux Estructuras_de_Datos]$  cd /home/Kevin/GitHub/Estructuras_de_Datos ; /usr/bin/env /usr/lib/jvm/java-25-openjdk/bin/java --enable-preview -XX:+ShowCodeDetailsInExceptionMessages -cp /home/Kevin/.config/VSCodium/User/workspaceStorage/264bacede3785dfb0a9003208d6b73e2/redhat.java/jdt_ws/Estructuras_de_Datos_9680e0b0/bin EjecutarSistema 
 Menú: Ingrese el número de la opción a ejecutar:
 1. Acceso al menú de registro de buques.
 2. Acceso al menú de registro de contenedores

@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class Main {
+public class EjecutarGalatic {
     public static void main(String[] args) {
         int[] energiaContenedores = new int[12];
         int min = 50;
