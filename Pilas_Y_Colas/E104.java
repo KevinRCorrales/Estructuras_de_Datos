@@ -11,13 +11,13 @@ public class E104 {
                 "349943204208043209859450934829432"
         };
 
-        String sumaString = sumar(archivo[0], archivo[1]);
-        String sumaString2 = sumar(archivo[2], archivo[3]);
-        String sumaString3 = sumar(archivo[4], archivo[5]);
+        String total = archivo[0];
 
-        String sumaString4 = sumar(sumaString, sumaString2);
+        for (int i=1; i<archivo.length; i++) {
+            total = sumar(total, archivo[i]);
+        }
 
-        System.out.println("La suma es: " + sumar(sumaString4, sumaString3));
+        System.out.println("La suma es: " + total);
 
     }
 
@@ -34,16 +34,34 @@ public class E104 {
 
         for (int i = 0; i < primerNumero.length; i++) {
             pila1.push(primerNumero[i] - '0');
-            pila2.push(segundoNumero[i] - '0');
+            
+            try { // el segundoNumero puede estar más vacio que el primerNumero
+                pila2.push(segundoNumero[i] - '0');
+            } catch (Exception ArraYIndexOutOfBoundsException) {
+                continue;
+            }
         }
 
         System.out.println(pila1);
         System.out.println(pila2);
 
+        int size;
+
         // Sumar los números
-        int size = pila1.size();
-        for (int i=0; i<size; i++){
-            int resultado = pila1.pop() + pila2.pop() + lleva;
+        if (pila1.size() > pila2.size()) {
+            size = pila1.size();
+        } else {
+            size = pila2.size();
+        }
+
+        for (int i=0; i<size; i++) {
+            int resultado;
+            try {
+                int pila2_pop = pila2.pop();
+                resultado = pila1.pop() + pila2_pop + lleva;
+            } catch (Exception EmptyStackException) {
+                resultado = pila1.pop() + lleva;
+            }
             if (resultado > 9){
                 lleva = 1;
                 resultado = resultado - 10;
